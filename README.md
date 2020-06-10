@@ -1,2 +1,3 @@
 # Project-Related-Documents
-exploration on required skills
+Exploration on required skills
+Collection of documents
