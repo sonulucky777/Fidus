@@ -1,27 +1,25 @@
 from django import forms
-from .models import UserProfileInfo, Prescription, MedicalTest
+from .models import UserProfileInfo, Prescription, MedicalTest, Appointment
 from django.contrib.auth.models import User
-YEARS= [x for x in range(1960,2021)]
+YEARS= [x for x in range(1960,2022)]
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
-    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    birth_date= forms.DateField(label='What is your birth date?', widget=forms.SelectDateWidget(years=YEARS))
-    gender_choices = [("M", "Male"), ("F", "Female"), ("O", "Others")]
-    gender = forms.TypedChoiceField(choices=gender_choices, initial="M")
-    address = forms.CharField(max_length=300)
-    zip_code = forms.CharField(max_length=12)
-    phone = forms.CharField(max_length=20)
+    #password_confirmation = forms.CharField(widget=forms.PasswordInput())
     class Meta():
         model = User
-        fields = ('first_name','last_name','username','password','email','birth_date','address','zip_code','phone')
+        fields = ('first_name', 'last_name', 'username', 'email', 'password')
 
 class UserProfileInfoForm(forms.ModelForm):
+    birth_date= forms.DateField(label='What is your birth date?', widget=forms.SelectDateWidget(years=YEARS))
     class Meta():
         model = UserProfileInfo
-        fields = ('Social_link','profile_pic')
+        fields = ('gender','birth_date','address','zip_code','phone','Social_link','profile_pic')
 
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = "__all__"
 class PrescriptionForm(forms.ModelForm):
     class Meta: 
         model = Prescription 
