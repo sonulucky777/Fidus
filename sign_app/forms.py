@@ -14,7 +14,7 @@ class UserProfileInfoForm(forms.ModelForm):
     birth_date= forms.DateField(label='What is your birth date?', widget=forms.SelectDateWidget(years=YEARS))
     class Meta():
         model = UserProfileInfo
-        fields = ('gender','birth_date','address','zip_code','phone','Social_link','profile_pic')
+        fields = ('gender','birth_date','address','zip_code','phone','Social_link')
 
 class AppointmentForm(forms.ModelForm):
     class Meta:
